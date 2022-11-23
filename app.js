@@ -4,6 +4,7 @@ const app = express();
 const axios = require("axios");
 const { Agent } = require("https");
 const url = require("url");
+const { stringify } = require("querystring");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -37,6 +38,7 @@ app.post("/api/login", async(req, res) => {
         }, {
             headers: {
                 "Content-Type": "application/json",
+                "user-agent": "RiotClient/60.0.10.4802528.4749685 rso-auth (Windows;10;;Professional, x64)",
             },
             httpsAgent: agent,
         }
@@ -55,25 +57,97 @@ app.post("/api/login", async(req, res) => {
             headers: {
                 "Content-Type": "application/json",
                 Cookie: cookies0.headers["set-cookie"],
+                "user-agent": "RiotClient/60.0.10.4802528.4749685 rso-auth (Windows;10;;Professional, x64)",
+            },
+            httpsAgent: agent,
+        }
+    );
+    if (cookies1.data.type !== "multifactor") {
+        var uri = cookies1.data.response.parameters.uri;
+        var querydata = url.parse(uri, true).hash.split("&");
+        var acces_token = querydata[0].replace("#access_token=", "");
+        var entitlementtoken = await axios.post(
+            "https://entitlements.auth.riotgames.com/api/token/v1", {}, {
+                headers: {
+                    Authorization: "Bearer " + acces_token,
+                    "Content-Type": "application/json",
+                    "user-agent": "RiotClient/60.0.10.4802528.4749685 rso-auth (Windows;10;;Professional, x64)",
+                },
+            }
+        );
+        var puuidtoken = await axios.get("https://auth.riotgames.com/userinfo", {
+            headers: {
+                Authorization: "Bearer " + acces_token,
+                "user-agent": "RiotClient/60.0.10.4802528.4749685 rso-auth (Windows;10;;Professional, x64)",
+            },
+        });
+
+        res.send({
+            token: acces_token,
+            entitlement: entitlementtoken.data.entitlements_token,
+            puuid: puuidtoken.data.sub,
+        });
+    } else {
+        res.send({
+            err: "auth",
+            Cookie: cookies1.headers["set-cookie"],
+        });
+    }
+
+    //console.log(cookies1.data);
+    //res.send({ data0: cookies0.data, data1: cookies1.data });
+});
+
+app.post("/api/auth", async(req, res) => {
+    let mfacode = req.body.code;
+    let cookies = req.body.Cookie;
+
+    var mfa = await axios.put(
+        "https://auth.riotgames.com/api/v1/authorization", {
+            type: "multifactor",
+            code: mfacode,
+            rememberDevice: true,
+        }, {
+            headers: {
+                "Content-Type": "application/json",
+                Cookie: cookies,
+                "user-agent": "RiotClient/60.0.10.4802528.4749685 rso-auth (Windows;10;;Professional, x64)",
             },
             httpsAgent: agent,
         }
     );
 
-    //console.log(cookies1.data);
-    //res.send(cookies1.data);
-    if (cookies1.data.type !== "multifactor") {
-        var uri = (cookies1 = cookies1.data.response.parameters.uri);
-        var querydata = url.parse(uri, true).hash.split("&");
-        var acces_token = querydata[0].replace("#acces_token=", "");
+    //res.send(mfa.data);
+    var uri = mfa.data.response.parameters.uri;
+    var querydata = url.parse(uri, true).hash.split("&");
+    var acces_token = querydata[0].replace("#access_token=", "");
+    var entitlementtoken = await axios.post(
+        "https://entitlements.auth.riotgames.com/api/token/v1", {}, {
+            headers: {
+                Authorization: "Bearer " + acces_token,
+                "Content-Type": "application/json",
+                "user-agent": "RiotClient/60.0.10.4802528.4749685 rso-auth (Windows;10;;Professional, x64)",
+            },
+        }
+    );
+    var puuidtoken = await axios.get("https://auth.riotgames.com/userinfo", {
+        headers: {
+            Authorization: "Bearer " + acces_token,
+            "user-agent": "RiotClient/60.0.10.4802528.4749685 rso-auth (Windows;10;;Professional, x64)",
+        },
+    });
 
-        res.send({ data0: cookies0.data, token: acces_token });
-    } else {
-        res.send({ err: "auth" });
-    }
+    res.send({
+        token: acces_token,
+        entitlement: entitlementtoken.data.entitlements_token,
+        puuid: puuidtoken.data.sub,
+    });
+});
 
-    //console.log(cookies1.data);
-    //res.send({ data0: cookies0.data, data1: cookies1.data });
+app.get("api/store", async(req, res) => {
+    var token = req.body.token;
+    var entitlement = req.body.entitlement;
+    var region = req.body.region;
 });
 
 app.listen(3000, () => console.log(`Listening on: 3000`));
