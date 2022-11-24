@@ -144,10 +144,41 @@ app.post("/api/auth", async(req, res) => {
     });
 });
 
-app.get("api/store", async(req, res) => {
+app.get("/api/store", async(req, res) => {
     var token = req.body.token;
     var entitlement = req.body.entitlement;
+    var puuid = req.body.puuid;
     var region = req.body.region;
+
+    var store = await axios.get(
+        "https://pd." + region + ".a.pvp.net/store/v2/storefront/" + puuid, {
+            headers: {
+                "X-Riot-Entitlements-JWT": entitlement,
+                Authorization: "Bearer " + token,
+            },
+        }
+    );
+    res.send(store.data.SkinsPanelLayout.SingleItemOffers);
+});
+
+app.get("/api/wallet", async(req, res) => {
+    var token = req.body.token;
+    var entitlement = req.body.entitlement;
+    var puuid = req.body.puuid;
+    var region = req.body.region;
+
+    var wallet = await axios.get(
+        "https://pd." + region + ".a.pvp.net/store/v1/wallet/" + puuid, {
+            headers: {
+                "X-Riot-Entitlements-JWT": entitlement,
+                Authorization: "Bearer " + token,
+            },
+        }
+    );
+    res.send({
+        vp: wallet.data.Balances["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"],
+        rp: wallet.data.Balances["e59aa87c-4cbf-517a-5983-6e81511be9b7"],
+    });
 });
 
 app.listen(3000, () => console.log(`Listening on: 3000`));
