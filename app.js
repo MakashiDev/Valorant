@@ -181,5 +181,25 @@ app.get("/api/wallet", async(req, res) => {
     });
 });
 
+app.get("/api/xp", async(req, res) => {
+    var token = req.body.token;
+    var entitlement = req.body.entitlement;
+    var puuid = req.body.puuid;
+    var region = req.body.region;
+
+    var accountXP = await axios.get(
+        "https://pd." + region + ".a.pvp.net/account-xp/v1/players/" + puuid, {
+            headers: {
+                "X-Riot-Entitlements-JWT": entitlement,
+                Authorization: "Bearer " + token,
+            },
+        }
+    );
+    res.send({
+        xp: accountXP.data.Progress.XP,
+        level: accountXP.data.Progress.Level,
+    });
+});
+
 app.listen(3000, () => console.log(`Listening on: 3000`));
 //module.exports.handler = serverless(app);
