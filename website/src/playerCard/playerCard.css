@@ -1,0 +1,47 @@
+.playerCard {
+    background: #FFFFFF08;
+    box-shadow: 0 10px 20px #00000080;
+    border-radius: 15px;
+    margin: 0 14px 50px;
+    padding: 20px;
+    height: -webkit-fill-available;
+    width: -webkit-fill-available;
+}
+
+.pcHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+    padding-bottom: 20px;
+    font-weight: 500;
+}
+
+.pcNameTag {
+    color: lightgray;
+    font-weight: 400;
+}
+
+.pcTitle {
+    font-weight: 400;
+}
+
+.pcBody {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.pcBodylevel {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 -3px;
+}
+
+.pcBodySub {
+    color: grey;
+    font-size: 10px;
+    margin-bottom: 5px;
+}

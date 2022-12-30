@@ -650,3 +650,6 @@ Server/.serverless/cloudformation-template-update-stack.json
 Server/.serverless/serverless-state.json
 Server/.serverless/ValLogin.zip
 Server/serverless.yml
+Old Website/index.html
+Old Website/script.js
+Old Website/styles.css
