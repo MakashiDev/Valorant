@@ -1,20 +1,20 @@
 import React from "react";
 import ProgressBar from "./progressBar";
 import "./playerCard.css";
-
-const PlayerCard = () => {
+const PlayerCard = (data) => {
   return (
-    <div className="playerCard">
+    <div className="mainDiv" id="playerCard">
       <div className="pcHeader">
         <span className="pcName">
-          Makashi<span className="pcNameTag">#ΔΔΔ</span>
+          {data.user}
+          <span className="pcNameTag">{"#" + data.tag} </span>
         </span>
-        <span className="pcTitle">Mid</span>
+        <span className="pcTitle"> {data.title} </span>
       </div>
       <div className="pcBody">
-        <span className="pcBodylevel">49</span>
-        <span className="pcBodySub">800/5000</span>
-        <ProgressBar />
+        <span className="pcBodylevel"> {data.level} </span>
+        <span className="pcBodySub"> {data.xp + "/ 5000"} </span>
+        <ProgressBar xp={data.xp} />
       </div>
     </div>
   );

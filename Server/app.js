@@ -19,13 +19,6 @@ const agent = new Agent({
     minVersion: "TLSv1.2",
 });
 
-app.get("/api/info", (req, res) => {
-    res.send({ application: "sample-app", version: "1" });
-});
-app.post("/api/v1/getback", (req, res) => {
-    res.send({...req.body });
-});
-
 app.post("/api/login", async(req, res) => {
     let user = req.body.user;
     let pass = req.body.pass;
