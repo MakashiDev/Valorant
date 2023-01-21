@@ -68,7 +68,7 @@ app.post("/api/login", async(req, res) => {
                 },
             }
         );
-        var puuidtoken = await axios.get("https://auth.riotgames.com/userinfo", {
+        var userinfo = await axios.get("https://auth.riotgames.com/userinfo", {
             headers: {
                 Authorization: "Bearer " + acces_token,
                 "user-agent": "RiotClient/60.0.10.4802528.4749685 rso-auth (Windows;10;;Professional, x64)",
@@ -78,7 +78,9 @@ app.post("/api/login", async(req, res) => {
         res.send({
             token: acces_token,
             entitlement: entitlementtoken.data.entitlements_token,
-            puuid: puuidtoken.data.sub,
+            puuid: userinfo.data.sub,
+            name: userinfo.data.acct.game_name,
+            tag: userinfo.data.acct.tag_line,
         });
     } else {
         res.send({
@@ -193,8 +195,6 @@ app.get("/api/xp", async(req, res) => {
         level: accountXP.data.Progress.Level,
     });
 });
-
-app.get("/api/");
 
 app.listen(3000, () => console.log(`Listening on: 3000`));
 //module.exports.handler = serverless(app);
