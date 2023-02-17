@@ -35,7 +35,7 @@ const ShopCard = (data) => {
       </div>
       <div className="shopItem" id="item3">
         <img src={data.img3} alt={data.item3} className="itemImg3" />
-        <span className="itemName3">Silvanus Operator</span>
+        <span className="itemName3">{data.item3}</span>
         <div className="itemPriceContainer">
           <img src={vpUrl} alt="vp" className="vp" />
           <span id="itemPrice3" className="itemPrice">
@@ -45,7 +45,7 @@ const ShopCard = (data) => {
       </div>
       <div className="shopItem" id="item4">
         <img src={data.img4} alt={data.item4} className="itemImg4" />
-        <span className="itemName4">Tethered Realms Guardian</span>
+        <span className="itemName4">{data.item4}</span>
         <div className="itemPriceContainer">
           <img src={vpUrl} alt="vp" className="vp" />
           <span id="itemPrice4" className="itemPrice">

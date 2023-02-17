@@ -1,0 +1,11 @@
+{
+    "cookies": [
+        "tdid=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImZiMTViYjFmLThhMWQtNDI0Yi05N2FhLTY2NWE1YzBmZmY4NSIsIm5vbmNlIjoiTG95QlZzVTl1T2M9IiwiaWF0IjoxNjc0NjA5NDcwfQ.Fk68ETcJ1Fk-35mcKFKTYYBOLP1W6Yj96piZoKjIVEo; Max-Age=31536000; Domain=riotgames.com; Path=/; Expires=Thu, 25 Jan 2024 01:17:50 GMT; HttpOnly; Secure",
+        "asid=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOnly; Secure",
+        "clid=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOnly; Secure",
+        "ssid=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzc2lkIjoiN1I3N0ZiOFlUY1MyaXEyM1lqcXBydy5ZSG9wMVVtNEViSGZ3Nkw5NXc4dWpRIiwic3ViIjoiMTkyYzUzNGItYmIyYS01MzcxLTk2NzctNzFhNzQ4N2I4ZjgwIiwibG9naW5Ub2tlbiI6IjAzNzE5NDBmLTliOWEtNGFhOS04ODc5LTJhODMwMGYxNWU3NCIsInNlcmllc1Rva2VuIjoiZDZkMGM0M2YtOWU1YS00ZTU1LTljZTUtNGE3ZWVkODk4NzU2IiwiaWF0IjoxNjc0NjA5NDcxfQ.Gav57xuLBdSWc_CetD9IkTzPvl0vmn1O9KEfXfBtfoQ; Path=/; Expires=Fri, 24 Feb 2023 01:17:51 GMT; HttpOnly; Secure; SameSite=None",
+        "clid=uw1; Path=/; Expires=Fri, 24 Feb 2023 01:17:51 GMT; HttpOnly; Secure",
+        "sub=192c534b-bb2a-5371-9677-71a7487b8f80; Path=/; Expires=Fri, 24 Feb 2023 01:17:51 GMT; Secure",
+        "csid=7R77Fb8YTcS2iq23Yjqprw.YHop1Um4EbHfw6L95w8ujQ; Path=/; Expires=Fri, 24 Feb 2023 01:17:51 GMT; Secure; SameSite=None"
+    ]
+}
