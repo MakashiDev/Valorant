@@ -5,9 +5,9 @@ import ShopCard from "./shopCard/shopCard";
 import RankCard from "./rankCard/rankCard";
 import "./index.css";
 
-const username = "wszMakashi"; //prompt("Enter your username");
-const password = "SuperFancy9("; //prompt("Enter your password");
-const region = "na"; //prompt("Enter your region");
+const username = prompt("Enter your username");
+const password = prompt("Enter your password");
+const region = prompt("Enter your region");
 
 async function main(username, password, region) {
   const loginRQ = await fetch(
