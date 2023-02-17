@@ -254,7 +254,7 @@ function renderSite(
         <h2>Welcome {user}</h2>
       </div>
       <PlayerCard user={user} tag={tag} title={title} level={level} xp={xp} />
-      <RankCard />
+      {/* <RankCard />*/}
       <ShopCard
         item1={item1}
         img1={img1}
