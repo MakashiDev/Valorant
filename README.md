@@ -9,8 +9,8 @@ It helps keep the code clean and not a mess and it's easier to read. I also only
 
  - [x] Setup Login System
  - [x] Add 2fa
- - [ ] Add api calls for store, loadout, quests, xp 
+ - [x] Add api calls for store, loadout, quests, xp 
  - [x] Host via AWS
- - [ ] Design website **(In progress)**
- - [ ] Create Website
+ - [x] Design website 
+ - [x] Create Website
  - [ ] Host website
