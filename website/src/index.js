@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
 import PlayerCard from "./playerCard/playerCard";
 import ShopCard from "./shopCard/shopCard";
 import RankCard from "./rankCard/rankCard";
+import LoginCard from "./loginCard/loginCard";
 import "./index.css";
 
-const username = "wszMakashi"; //prompt("Enter your username");
-const password = "SuperFancy9("; //prompt("Enter your password");
-const region = "na"; //prompt("Enter your region");
+//const username = prompt("Enter your username");
+//const password = prompt("Enter your password");
+//const region = prompt("Enter your region");
 
-async function main(username, password, region) {
+const root = ReactDOM.createRoot(document.getElementsByTagName("body")[0]);
+root.render(
+  <React.StrictMode>
+    <LoginCard />
+  </React.StrictMode>
+);
+
+export default async function main(username, password, region) {
   const loginRQ = await fetch(
     "https://j9tnjmqlzd.execute-api.us-east-2.amazonaws.com/dev/api/login",
     {
@@ -251,7 +259,7 @@ function renderSite(
   root.render(
     <React.StrictMode>
       <div className="username">
-        <h2>Welcome {user}</h2>
+        <h2> Welcome {user} </h2>
       </div>
       <PlayerCard user={user} tag={tag} title={title} level={level} xp={xp} />
       {/* <RankCard />*/}
@@ -273,6 +281,6 @@ function renderSite(
   );
 }
 
-main(username, password, region).catch((err) => {
-  console.error(err);
-});
+//main(username, password, region).catch((err) => {
+//console.error(err);
+//});

@@ -1,0 +1,111 @@
+#loginCard {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, .5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
+    border-radius: 10px;
+}
+
+#loginCard .inputBox {
+    position: relative;
+}
+
+#loginCard .inputBox input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+}
+
+#loginCard .inputBox label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+}
+
+#loginCard .inputBox input:focus~label,
+#loginCard .inputBox input:valid~label {
+    top: -20px;
+    left: 0;
+    color: #ed9345;
+    font-size: 12px;
+}
+
+#loginCard input:-webkit-autofill,
+#loginCard input:-webkit-autofill:hover,
+#loginCard input:-webkit-autofill:focus,
+#loginCard input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #101010 inset !important;
+}
+
+#loginCard input:-webkit-autofill {
+    -webkit-text-fill-color: #fff !important;
+}
+
+p {
+    font-weight: bold;
+    text-align: center;
+    color: #ed9345;
+    font-size: 20px;
+}
+
+.login {
+    width: 30%;
+    border: none;
+    outline: none;
+    border-radius: 2px;
+    height: 25px;
+    margin-top: 10px;
+    background: #ed9345;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #ed9345;
+    color: white;
+}
+
+select {
+    appearance: none;
+    border: 0;
+    outline: 0;
+    font: inherit;
+    width: 20em;
+    height: 3em;
+    padding: 0 4em 0 1em;
+    background: url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Caret_down_font_awesome_whitevariation.svg) no-repeat right 0.8em center / 1.4em, linear-gradient(to left, rgba(255, 255, 255, 0.3) 3em, rgba(255, 255, 255, 0.2) 3em);
+    color: white;
+    border-radius: 0.25em;
+    box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+select option {
+    color: inherit;
+    background-color: #1e1e1e;
+}
+
+select:focus {
+    outline: none;
+}
+
+select::-ms-expand {
+    display: none;
+}
