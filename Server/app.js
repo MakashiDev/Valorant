@@ -5,8 +5,10 @@ const axios = require("axios");
 const { Agent } = require("https");
 const url = require("url");
 const { stringify } = require("querystring");
+const cors = require("cors");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors());
 
 const agent = new Agent({
   ciphers: [
@@ -180,16 +182,53 @@ app.post("/api/store", async (req, res) => {
   );
   const vp = "85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741";
 
-  const offer0 = store.data.SkinsPanelLayout.SingleItemStoreOffers[0].OfferID;
+  let name0 = await axios.get(
+    "https://valorant-api.com/v1/weapons/skinlevels/" +
+      store.data.SkinsPanelLayout.SingleItemStoreOffers[0].OfferID,
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  let name1 = await axios.get(
+    "https://valorant-api.com/v1/weapons/skinlevels/" +
+      store.data.SkinsPanelLayout.SingleItemStoreOffers[1].OfferID,
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  let name2 = await axios.get(
+    "https://valorant-api.com/v1/weapons/skinlevels/" +
+      store.data.SkinsPanelLayout.SingleItemStoreOffers[2].OfferID,
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  let name3 = await axios.get(
+    "https://valorant-api.com/v1/weapons/skinlevels/" +
+      store.data.SkinsPanelLayout.SingleItemStoreOffers[3].OfferID,
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+
+  const offer0 = name0.data.data.displayName;
   const offer0Cost =
     store.data.SkinsPanelLayout.SingleItemStoreOffers[0].Cost[vp];
-  const offer1 = store.data.SkinsPanelLayout.SingleItemStoreOffers[1].OfferID;
+  const offer1 = name1.data.data.displayName;
   const offer1Cost =
     store.data.SkinsPanelLayout.SingleItemStoreOffers[1].Cost[vp];
-  const offer2 = store.data.SkinsPanelLayout.SingleItemStoreOffers[2].OfferID;
+  const offer2 = name2.data.data.displayName;
   const offer2Cost =
     store.data.SkinsPanelLayout.SingleItemStoreOffers[2].Cost[vp];
-  const offer3 = store.data.SkinsPanelLayout.SingleItemStoreOffers[3].OfferID;
+  const offer3 = name3.data.data.displayName;
   const offer3Cost =
     store.data.SkinsPanelLayout.SingleItemStoreOffers[3].Cost[vp];
 
@@ -325,5 +364,5 @@ app.post("/api/title", async (req, res) => {
   res.send({ title: titleText.data.data.titleText });
 });
 
-app.listen(3000, () => console.log(`Listening on: 3000`));
-//module.exports.handler = serverless(app);
+//app.listen(3000, () => console.log(`Listening on: 3000`));
+module.exports.handler = serverless(app);
