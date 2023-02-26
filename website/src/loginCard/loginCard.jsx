@@ -8,15 +8,12 @@ const LoginCard = () => {
   const [region, setRegion] = useState("na");
 
   function handleUsernameChange(event) {
-    console.log(event.target.value);
     setUsername(event.target.value);
   }
   function handlePasswordChange(event) {
-    console.log(event.target.value);
     setPassword(event.target.value);
   }
   function handleRegionChange(event) {
-    console.log(event.target.value);
     setRegion(event.target.value);
   }
 

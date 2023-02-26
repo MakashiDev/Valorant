@@ -8,9 +8,7 @@ const ShopCard = (data) => {
   const item1 = useRef(null);
   const vpUrl =
     "https://media.valorant-api.com/currencies/85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741/displayicon.png";
-  useEffect(() => {
-    //console.log(item1.current.offsetWidth);
-  }, []);
+  useEffect(() => {}, []);
   return (
     <div className="mainDiv" id="shop">
       <div className="shopItem" id="item1" ref={item1}>

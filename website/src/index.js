@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import PlayerCard from "./playerCard/playerCard";
 import ShopCard from "./shopCard/shopCard";
+//eslint-disable-next-line no-unused-vars
 import RankCard from "./rankCard/rankCard";
 import LoginCard from "./loginCard/loginCard";
 import "./index.css";
@@ -51,7 +52,7 @@ export default async function main(username, password, region) {
     price4,
     img4,
   } = await getStoreOffers(token, entitlement, puuid, region);
-
+  //eslint-disable-next-line no-unused-vars
   const { vp, rp } = await getWallet(token, entitlement, puuid, region);
   const { xp, level } = await getXP(token, entitlement, puuid, region);
   const { user, tag } = await userinfo(token);
@@ -99,8 +100,6 @@ async function userinfo(token) {
 }
 
 async function getStoreOffers(token, entitlement, puuid, region) {
-  console.log(token, entitlement, puuid, region);
-
   const storeRQ = await fetch(
     "https://j9tnjmqlzd.execute-api.us-east-2.amazonaws.com/dev/api/store",
     {
@@ -131,7 +130,6 @@ async function getStoreOffers(token, entitlement, puuid, region) {
   let item4 = body.offer3,
     price4 = body.offer3Cost,
     img4 = body.offer3Img;
-  console.log(item1);
   return {
     item1,
     price1,
@@ -188,7 +186,6 @@ async function getXP(token, entitlement, puuid, region) {
     }
   );
   const body = await xpRQ.json();
-  console.log(body);
   const xp = body.xp;
   const level = body.level;
   return { xp, level };
@@ -210,9 +207,7 @@ async function getTitle(token, entitlement, puuid, region) {
       }),
     }
   );
-  console.log(titleRQ);
   const body = await titleRQ.json();
-  console.log(body);
 
   return body.title;
 }
@@ -236,25 +231,6 @@ function renderSite(
   img4,
   price4
 ) {
-  console.log(
-    user,
-    tag,
-    title,
-    level,
-    xp,
-    item1,
-    img1,
-    price1,
-    item2,
-    img2,
-    price2,
-    item3,
-    img3,
-    price3,
-    item4,
-    img4,
-    price4
-  );
   const root = ReactDOM.createRoot(document.getElementsByTagName("body")[0]);
   root.render(
     <React.StrictMode>
@@ -280,7 +256,3 @@ function renderSite(
     </React.StrictMode>
   );
 }
-
-//main(username, password, region).catch((err) => {
-//console.error(err);
-//});
