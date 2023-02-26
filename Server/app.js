@@ -221,32 +221,36 @@ app.post("/api/store", async (req, res) => {
 
   const offer0 = name0.data.data.displayName;
   const offer0Cost =
-    store.data.SkinsPanelLayout.SingleItemStoreOffers[0].Cost[vp];
+      store.data.SkinsPanelLayout.SingleItemStoreOffers[0].Cost[vp],
+    offer0ID = store.data.SkinsPanelLayout.SingleItemStoreOffers[0].OfferID;
   const offer1 = name1.data.data.displayName;
   const offer1Cost =
-    store.data.SkinsPanelLayout.SingleItemStoreOffers[1].Cost[vp];
+      store.data.SkinsPanelLayout.SingleItemStoreOffers[1].Cost[vp],
+    offer1ID = store.data.SkinsPanelLayout.SingleItemStoreOffers[1].OfferID;
   const offer2 = name2.data.data.displayName;
   const offer2Cost =
-    store.data.SkinsPanelLayout.SingleItemStoreOffers[2].Cost[vp];
+      store.data.SkinsPanelLayout.SingleItemStoreOffers[2].Cost[vp],
+    offer2ID = store.data.SkinsPanelLayout.SingleItemStoreOffers[2].OfferID;
   const offer3 = name3.data.data.displayName;
   const offer3Cost =
-    store.data.SkinsPanelLayout.SingleItemStoreOffers[3].Cost[vp];
+      store.data.SkinsPanelLayout.SingleItemStoreOffers[3].Cost[vp],
+    offer3ID = store.data.SkinsPanelLayout.SingleItemStoreOffers[3].OfferID;
 
   const offer0Img =
     "https://media.valorant-api.com/weaponskinlevels/" +
-    offer0 +
+    offer0ID +
     "/displayicon.png";
   const offer1Img =
     "https://media.valorant-api.com/weaponskinlevels/" +
-    offer1 +
+    offer1ID +
     "/displayicon.png";
   const offer2Img =
     "https://media.valorant-api.com/weaponskinlevels/" +
-    offer2 +
+    offer2ID +
     "/displayicon.png";
   const offer3Img =
     "https://media.valorant-api.com/weaponskinlevels/" +
-    offer3 +
+    offer3ID +
     "/displayicon.png";
 
   res.send({
