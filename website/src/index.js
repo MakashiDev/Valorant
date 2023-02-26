@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
 import PlayerCard from "./playerCard/playerCard";
 import ShopCard from "./shopCard/shopCard";
