@@ -653,3 +653,15 @@ Server/serverless.yml
 Old Website/index.html
 Old Website/script.js
 Old Website/styles.css
+build/asset-manifest.json
+build/favicon.ico
+build/index.html
+build/logo192.png
+build/logo512.png
+build/manifest.json
+build/static/css/main.b3be54f3.css
+build/static/css/main.b3be54f3.css.map
+build/static/js/main.89417347.js
+build/static/js/main.89417347.js.LICENSE.txt
+build/static/js/main.89417347.js.map
+.gitignore

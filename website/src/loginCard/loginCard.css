@@ -57,6 +57,17 @@
     -webkit-text-fill-color: #fff !important;
 }
 
+#loginCard input:autofill,
+#loginCard input:autofill:hover,
+#loginCard input:autofill:focus,
+#loginCard input:autofill:active {
+    box-shadow: 0 0 0 30px #101010 inset !important;
+}
+
+#loginCard input:autofill {
+    -webkit-text-fill-color: #fff !important;
+}
+
 p {
     font-weight: bold;
     text-align: center;

@@ -37,7 +37,7 @@ app.post("/api/login", async (req, res) => {
       headers: {
         "Content-Type": "application/json",
         "user-agent":
-          "RiotClient/63.0.5.4887690.4789131 rso-auth (Windows;10;;Professional, x64)",
+          "RiotClient/63.0.9.4909983.4789131 rso-auth (Windows;10;;Professional, x64)",
       },
       httpsAgent: agent,
     }
@@ -56,7 +56,7 @@ app.post("/api/login", async (req, res) => {
       headers: {
         "Content-Type": "application/json",
         "user-agent":
-          "RiotClient/63.0.5.4887690.4789131 rso-auth (Windows;10;;Professional, x64)",
+          "RiotClient/63.0.9.4909983.4789131 rso-auth (Windows;10;;Professional, x64)",
         Cookie: authCookies.headers["set-cookie"],
       },
       httpsAgent: agent,
@@ -75,14 +75,14 @@ app.post("/api/login", async (req, res) => {
           Authorization: "Bearer " + token,
           "Content-Type": "application/json",
           "user-agent":
-            "RiotClient/63.0.5.4887690.4789131 rso-auth (Windows;10;;Professional, x64)",
+            "RiotClient/63.0.9.4909983.4789131 rso-auth (Windows;10;;Professional, x64)",
         },
       }
     );
     var puuid = await axios.get("https://auth.riotgames.com/userinfo", {
       headers: {
         "user-agent":
-          "RiotClient/63.0.5.4887690.4789131 rso-auth (Windows;10;;Professional, x64)",
+          "RiotClient/63.0.9.4909983.4789131 rso-auth (Windows;10;;Professional, x64)",
         Authorization: "Bearer " + token,
       },
     });
@@ -115,7 +115,7 @@ app.post("/api/auth", async (req, res) => {
       headers: {
         "Content-Type": "application/json",
         "user-agent":
-          "RiotClient/63.0.5.4887690.4789131 rso-auth (Windows;10;;Professional, x64)",
+          "RiotClient/63.0.9.4909983.4789131 rso-auth (Windows;10;;Professional, x64)",
         Cookie: cookies,
       },
       httpsAgent: agent,
@@ -132,7 +132,7 @@ app.post("/api/auth", async (req, res) => {
       headers: {
         Authorization: "Bearer " + acces_token,
         "user-agent":
-          "RiotClient/63.0.5.4887690.4789131 rso-auth (Windows;10;;Professional, x64)",
+          "RiotClient/63.0.9.4909983.4789131 rso-auth (Windows;10;;Professional, x64)",
         "Content-Type": "application/json",
       },
     }
@@ -152,17 +152,25 @@ app.post("/api/auth", async (req, res) => {
 
 app.post("/api/reauth", async (req, res) => {
   var reauthCookies = req.body.reauthCookies;
-  var reauth = await axios.get(
-    "https://auth.riotgames.com/authorize?redirect_uri=https%3A%2F%2Fplayvalorant.com%2Fopt_in&client_id=play-valorant-web-prod&response_type=token%20id_token&nonce=1",
+  var reauth = await axios.post(
+    "https://auth.riotgames.com/api/v1/authorization",
+    {
+      client_id: "play-valorant-web-prod",
+      nonce: 1,
+      redirect_uri: "https://playvalorant.com/opt_in",
+      response_type: "token id_token",
+      scope: "account openid",
+    },
     {
       headers: {
-        "user-agent": "",
         Cookie: reauthCookies,
+        "User-Agent":
+          "RiotClient/63.0.9.4909983.4789131 rso-auth (Windows;10;;Professional, x64)",
       },
       httpsAgent: agent,
     }
   );
-  console.log(reauth.status);
+  res.send(reauth.headers);
 });
 
 app.post("/api/store", async (req, res) => {
@@ -302,7 +310,7 @@ app.post("/api/xp", async (req, res) => {
       headers: {
         "X-Riot-Entitlements-JWT": entitlement,
         "user-agent":
-          "RiotClient/63.0.5.4887690.4789131 rso-auth (Windows;10;;Professional, x64)",
+          "RiotClient/63.0.9.4909983.4789131 rso-auth (Windows;10;;Professional, x64)",
         Authorization: "Bearer " + token,
       },
     }
@@ -319,7 +327,7 @@ app.post("/api/userinfo", async (req, res) => {
   var userinfo = await axios.get("https://auth.riotgames.com/userinfo", {
     headers: {
       "user-agent":
-        "RiotClient/63.0.5.4887690.4789131 rso-auth (Windows;10;;Professional, x64)",
+        "RiotClient/63.0.9.4909983.4789131 rso-auth (Windows;10;;Professional, x64)",
       Authorization: "Bearer " + token,
     },
   });
@@ -348,7 +356,7 @@ app.post("/api/title", async (req, res) => {
       headers: {
         "X-Riot-Entitlements-JWT": entitlement,
         "user-agent":
-          "RiotClient/63.0.5.4887690.4789131 rso-auth (Windows;10;;Professional, x64)",
+          "RiotClient/63.0.9.4909983.4789131 rso-auth (Windows;10;;Professional, x64)",
         Authorization: "Bearer " + token,
       },
     }
@@ -368,5 +376,5 @@ app.post("/api/title", async (req, res) => {
   res.send({ title: titleText.data.data.titleText });
 });
 
-//app.listen(3000, () => console.log(`Listening on: 3000`));
-module.exports.handler = serverless(app);
+app.listen(3000, () => console.log(`Listening on: 3000`));
+//module.exports.handler = serverless(app);
