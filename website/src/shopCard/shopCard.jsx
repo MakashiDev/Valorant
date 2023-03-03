@@ -5,10 +5,37 @@ import "./shopCard.css";
 const ShopCard = (data) => {
 	const vpUrl =
 		"https://media.valorant-api.com/currencies/85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741/displayicon.png";
-	localStorage.setItem("storeData", JSON.stringify(data));
+	const now = new Date();
+	const expireDate = new Date(
+		now.getFullYear(),
+		now.getMonth(),
+		now.getDate() + 1,
+		5,
+		0,
+		0,
+		0
+	);
+	console.log(expireDate);
 
-	const storeData = JSON.parse(localStorage.getItem("storeData"));
-	console.log(storeData.item3);
+	let localStorageData = {
+		item1: data.item1,
+		item2: data.item2,
+		item3: data.item3,
+		item4: data.item4,
+		price1: data.price1,
+		price2: data.price2,
+		price3: data.price3,
+		price4: data.price4,
+		img1: data.img1,
+		img2: data.img2,
+		img3: data.img3,
+		img4: data.img4,
+		expireDate: expireDate,
+	};
+	localStorage.setItem("LastStoreData", JSON.stringify(localStorageData));
+
+	const storeData = JSON.parse(localStorage.getItem("LastStoreData"));
+	console.log(storeData);
 
 	return (
 		<div className="mainDiv" id="shop">
