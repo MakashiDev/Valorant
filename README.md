@@ -1,16 +1,17 @@
-# Valorant Server
-This is a api for my current project, it works as the midddle man and does all the requests to the Valorant servers meanwhile my website just makes calls to this.  
 
-### Why?
-It helps keep the code clean and not a mess and it's easier to read. I also only get the data I need so I don't have to fliter through which can take time.
+# Valorant 
+This is a website that utilizes the middleman I've created to talk to the Valorant servers. It gives you shop information and player info.
+
+## Version 2.0
+This was a pretty small update. 
+
++ The shop will now load faster, we store the shop in local storage until it resets.
++ Favicon support for all devices
++ Removed old react favicons
 
 
-## Development
+#### What to look out for 3.0
+The next update will include hopefully reauth if I can get it working. I have plans to increase the load time for the whole site, but it's not the top priority. I wish to include a menu where you can view more information about the guns in your shop. Currently, you cannot view the bundle in the shop but that will be coming soon.
 
- - [x] Setup Login System
- - [x] Add 2fa
- - [x] Add api calls for store, loadout, quests, xp 
- - [x] Host via AWS
- - [x] Design website 
- - [x] Create Website
- - [ ] Host website
+
+
